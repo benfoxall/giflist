@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GifList</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        height: 30vh;
+        flex-grow: 0;
+      }
+      img {
+        border: 1px solid;
+        max-height: 100%;
+        min-width: 100%;
+        object-fit: contain;
+        vertical-align: bottom;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>giflist</h1>
+    <ul id="giflist"></ul>
+    <script type="module">
+      const gifs = [
+        {
+          name: "Yoda",
+          url: "https://media.giphy.com/media/3ornjZLITGcFQVRbxK/source.gif",
+        },
+        {
+          name: "Moira",
+          url: "https://media.giphy.com/media/3NwahoGmAzVsyyGgaV/source.gif",
+        },
+        {
+          name: "Alan",
+          url: "https://media.giphy.com/media/vwF2MCJiQk1kKgnS7l/source.gif",
+        },
+        {
+          name: "Andre",
+          url: "https://media.giphy.com/media/BLxPyPNcfRXIUPxh6Q/source.gif",
+        },
+        {
+          name: "Curb",
+          url: "https://media.giphy.com/media/fSYmbgG5Ug8S11K0FU/source.gif",
+        },
+      ];
+
+      for (const gif of gifs) {
+        const li = document.createElement("li");
+        giflist.appendChild(li);
+
+        gifsize(gif.url).then((res) => {
+          const img = document.createElement("img");
+
+          img.src = `data:image/svg+xml,%3Csvg width='${res.width}' height='${res.height}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='red' /%3E%3C/svg%3E`;
+
+          img.addEventListener(
+            "mouseover",
+            () => {
+              img.style.background = "#aaa";
+              img.src = gif.url;
+            },
+            {
+              once: true,
+            }
+          );
+
+          li.appendChild(img);
+        });
+      }
+
+      async function gifsize(url) {
+        const result = await fetch(url, { headers: { Range: "bytes=6-9" } });
+
+        const [width, height] = new Uint16Array(await result.arrayBuffer());
+
+        return { width, height };
+      }
+    </script>
+  </body>
+</html>
