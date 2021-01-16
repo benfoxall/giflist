@@ -14,9 +14,12 @@
         flex-wrap: wrap;
         list-style: none;
         padding: 0;
+        gap: 1em;
+        max-width: 50em;
+        margin: auto;
       }
       li {
-        height: 30vh;
+        height: 8em;
         flex-grow: 0;
       }
       img {
@@ -34,42 +37,57 @@
     <ul id="giflist"></ul>
     <script type="module">
       const gifs = [
-        {
-          name: "Yoda",
-          url: "https://media.giphy.com/media/3ornjZLITGcFQVRbxK/source.gif",
-        },
-        {
-          name: "Moira",
-          url: "https://media.giphy.com/media/3NwahoGmAzVsyyGgaV/source.gif",
-        },
-        {
-          name: "Alan",
-          url: "https://media.giphy.com/media/vwF2MCJiQk1kKgnS7l/source.gif",
-        },
-        {
-          name: "Andre",
-          url: "https://media.giphy.com/media/BLxPyPNcfRXIUPxh6Q/source.gif",
-        },
-        {
-          name: "Curb",
-          url: "https://media.giphy.com/media/fSYmbgG5Ug8S11K0FU/source.gif",
-        },
+        "https://media.giphy.com/media/3ornjZLITGcFQVRbxK/source.gif",
+        "https://media.giphy.com/media/3NwahoGmAzVsyyGgaV/source.gif",
+        "https://media.giphy.com/media/vwF2MCJiQk1kKgnS7l/source.gif",
+        "https://media.giphy.com/media/BLxPyPNcfRXIUPxh6Q/source.gif",
+        "https://media.giphy.com/media/fSYmbgG5Ug8S11K0FU/source.gif",
+        "https://media.giphy.com/media/McgWV3RzDQZZNdFWRA/source.gif",
+        "https://media.giphy.com/media/drUQaRAxnTL4Q/giphy.gif",
+        "https://media.giphy.com/media/KPtSLVJfug7DO/giphy.gif",
+        "https://media.giphy.com/media/TFTWZWphtZAsWzJyx9/source.gif",
+        "https://media.giphy.com/media/3o7TKwdgwM1ZQMISu4/source.gif",
+        "https://media.giphy.com/media/l41lMMzTCBvXqtEUU/source.gif",
+        "https://media.giphy.com/media/STLj8QUhg25pe/source.gif",
+        "https://media.giphy.com/media/JkF5aGMSrtG5q/source.gif",
+        "https://media.giphy.com/media/raBbE1fizfZGE/source.gif",
+        "https://media.giphy.com/media/30pNidV6fJHivbPsaR/source.gif",
+        "https://media.giphy.com/media/XdPgs5ROUjIJxVzHx0/giphy.gif",
+        "https://media.giphy.com/media/3otPoKr6JOyejCyJAA/giphy.gif",
+        "https://media.giphy.com/media/3otPoHMzdMgfZznjpe/giphy.gif",
+        "https://media.giphy.com/media/KGeKS2bN3Vy0ALQ1Rf/giphy.gif",
+        "https://media.giphy.com/media/l0ErUoYi9bFdZJ3mo/giphy.gif",
+        "https://media.giphy.com/media/7yQgwmG4jmDOl0QrRa/giphy.gif",
+        "https://media.giphy.com/media/KzzMbCNB0fLtCbwq5h/giphy.gif",
+        "https://media.giphy.com/media/kbv4CXxXR65UivX8qT/giphy.gif",
+        "https://media.giphy.com/media/xUA7bcTVvYq5oZUvSw/giphy.gif",
+        "https://media.giphy.com/media/TvVck7lO4LDJS/giphy-downsized-large.gif",
+        "https://media.giphy.com/media/Y1GK5MEiRa3OSVsxHK/giphy.gif",
+        "https://media.giphy.com/media/tWTgJV6bZQLLi/giphy.gif",
+        "https://media.giphy.com/media/xUPGcDzMVxsPAiV1Ti/giphy.gif",
+        "https://media.giphy.com/media/LV979NzyOBjKBwK9gD/giphy.gif",
+        "https://media.giphy.com/media/xT9IgEk8W4Vu7cixhe/giphy.gif",
+        "https://media.giphy.com/media/iIuowhW7k2diw/giphy.gif",
+        "https://media.giphy.com/media/3o6vY2wgzLY2K1MKB2/giphy.gif",
+        "https://media.giphy.com/media/11nBTBqgQRpe36/giphy.gif",
       ];
 
-      for (const gif of gifs) {
+      for (const url of gifs) {
         const li = document.createElement("li");
         giflist.appendChild(li);
 
-        gifsize(gif.url).then((res) => {
-          const img = document.createElement("img");
+        const img = document.createElement("img");
 
+        img.src = `data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='red' /%3E%3C/svg%3E`;
+
+        gifsize(url).then((res) => {
           img.src = `data:image/svg+xml,%3Csvg width='${res.width}' height='${res.height}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='red' /%3E%3C/svg%3E`;
 
           img.addEventListener(
             "mouseover",
             () => {
               img.style.background = "#aaa";
-              img.src = gif.url;
+              img.src = url;
             },
             {
               once: true,
