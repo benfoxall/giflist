@@ -47,7 +47,7 @@
     }
 
     img.init {
-      opacity: 0;
+      opacity: 0.2;
       transform: scale(0.7);
     }
 
@@ -57,7 +57,6 @@
 
     img.placehold {
       transform: scale(1);
-      cursor: pointer;
     }
 
     img.loading {
@@ -73,6 +72,29 @@
 
 <body>
   <h1>giflist</h1>
+  <form>
+    <label>
+      <input type="checkbox" name="layout">
+      layout
+    </label>
+    <label>
+      <input type="checkbox" name="first">
+      first frame
+    </label>
+    <label>
+      <input type="checkbox" name="full">
+      full gif
+    </label>
+    <button>load</button>
+
+    <script>
+      // persist checkboxes
+      const params = new URLSearchParams(document.location.search);
+      for (const input of document.querySelectorAll('input')) {
+        input.checked = params.has(input.name)
+      }
+    </script>
+  </form>
   <ul id="giflist"></ul>
   <script type="module">
     const gifs = [
@@ -125,32 +147,16 @@
 
       let complete = false;
 
-      img.addEventListener(
-        "click",
-        () => {
-          complete = true;
-          img.className = 'loading'
-          img.src = url;
-          img.addEventListener('load', () => {
-            img.className = 'loaded'
-          })
-        },
-        {
-          once: true,
-        }
-      );
+      if (params.has('layout')) {
+        gifsize(url).then((res) => {
+          if (!complete) {
+            img.className = 'sized'
+            img.src = svgSrc(res.width, res.height)
+          }
+        });
+      }
 
-
-
-      gifsize(url).then((res) => {
-        if (!complete) {
-          img.className = 'sized'
-          img.src = svgSrc(res.width, res.height)
-        }
-      });
-
-      const limit = i++ < 50;
-      if (limit) {
+      if (params.has('first')) {
         gifframe(url).then((res) => {
           if (!complete) {
             complete = true;
@@ -158,6 +164,20 @@
             img.className = 'placehold'
           }
         });
+      }
+
+      if (params.has('full')) {
+
+        const preload = new Image();
+        preload.src = url;
+        preload.decode()
+          .then(() => {
+            complete = true;
+            document.body.appendChild(preload);
+            li.appendChild(preload)
+            li.removeChild(img)
+          })
+
       }
 
     }
