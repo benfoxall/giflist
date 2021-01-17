@@ -95,92 +95,88 @@
       }
     </script>
   </form>
-  <ul id="giflist"></ul>
+  <ul id="giflist">
+    <li><img class="init" data-src="https://media.giphy.com/media/3ornjZLITGcFQVRbxK/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/3NwahoGmAzVsyyGgaV/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/vwF2MCJiQk1kKgnS7l/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/BLxPyPNcfRXIUPxh6Q/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/fSYmbgG5Ug8S11K0FU/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/McgWV3RzDQZZNdFWRA/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/drUQaRAxnTL4Q/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/KPtSLVJfug7DO/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/TFTWZWphtZAsWzJyx9/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/3o7TKwdgwM1ZQMISu4/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/l41lMMzTCBvXqtEUU/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/STLj8QUhg25pe/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/JkF5aGMSrtG5q/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/raBbE1fizfZGE/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/30pNidV6fJHivbPsaR/source.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/XdPgs5ROUjIJxVzHx0/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/3otPoKr6JOyejCyJAA/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/3otPoHMzdMgfZznjpe/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/KGeKS2bN3Vy0ALQ1Rf/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/l0ErUoYi9bFdZJ3mo/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/7yQgwmG4jmDOl0QrRa/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/KzzMbCNB0fLtCbwq5h/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/kbv4CXxXR65UivX8qT/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/xUA7bcTVvYq5oZUvSw/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/TvVck7lO4LDJS/giphy-downsized-large.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/Y1GK5MEiRa3OSVsxHK/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/tWTgJV6bZQLLi/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/xUPGcDzMVxsPAiV1Ti/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/LV979NzyOBjKBwK9gD/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/xT9IgEk8W4Vu7cixhe/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/iIuowhW7k2diw/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/3o6vY2wgzLY2K1MKB2/giphy.gif" /></li>
+    <li><img class="init" data-src="https://media.giphy.com/media/11nBTBqgQRpe36/giphy.gif" /></li>
+  </ul>
   <script type="module">
-    const gifs = [
-      "https://media.giphy.com/media/3ornjZLITGcFQVRbxK/source.gif",
-      "https://media.giphy.com/media/3NwahoGmAzVsyyGgaV/source.gif",
-      "https://media.giphy.com/media/vwF2MCJiQk1kKgnS7l/source.gif",
-      "https://media.giphy.com/media/BLxPyPNcfRXIUPxh6Q/source.gif",
-      "https://media.giphy.com/media/fSYmbgG5Ug8S11K0FU/source.gif",
-      "https://media.giphy.com/media/McgWV3RzDQZZNdFWRA/source.gif",
-      "https://media.giphy.com/media/drUQaRAxnTL4Q/giphy.gif",
-      "https://media.giphy.com/media/KPtSLVJfug7DO/giphy.gif",
-      "https://media.giphy.com/media/TFTWZWphtZAsWzJyx9/source.gif",
-      "https://media.giphy.com/media/3o7TKwdgwM1ZQMISu4/source.gif",
-      "https://media.giphy.com/media/l41lMMzTCBvXqtEUU/source.gif",
-      "https://media.giphy.com/media/STLj8QUhg25pe/source.gif",
-      "https://media.giphy.com/media/JkF5aGMSrtG5q/source.gif",
-      "https://media.giphy.com/media/raBbE1fizfZGE/source.gif",
-      "https://media.giphy.com/media/30pNidV6fJHivbPsaR/source.gif",
-      "https://media.giphy.com/media/XdPgs5ROUjIJxVzHx0/giphy.gif",
-      "https://media.giphy.com/media/3otPoKr6JOyejCyJAA/giphy.gif",
-      "https://media.giphy.com/media/3otPoHMzdMgfZznjpe/giphy.gif",
-      "https://media.giphy.com/media/KGeKS2bN3Vy0ALQ1Rf/giphy.gif",
-      "https://media.giphy.com/media/l0ErUoYi9bFdZJ3mo/giphy.gif",
-      "https://media.giphy.com/media/7yQgwmG4jmDOl0QrRa/giphy.gif",
-      "https://media.giphy.com/media/KzzMbCNB0fLtCbwq5h/giphy.gif",
-      "https://media.giphy.com/media/kbv4CXxXR65UivX8qT/giphy.gif",
-      "https://media.giphy.com/media/xUA7bcTVvYq5oZUvSw/giphy.gif",
-      "https://media.giphy.com/media/TvVck7lO4LDJS/giphy-downsized-large.gif",
-      "https://media.giphy.com/media/Y1GK5MEiRa3OSVsxHK/giphy.gif",
-      "https://media.giphy.com/media/tWTgJV6bZQLLi/giphy.gif",
-      "https://media.giphy.com/media/xUPGcDzMVxsPAiV1Ti/giphy.gif",
-      "https://media.giphy.com/media/LV979NzyOBjKBwK9gD/giphy.gif",
-      "https://media.giphy.com/media/xT9IgEk8W4Vu7cixhe/giphy.gif",
-      "https://media.giphy.com/media/iIuowhW7k2diw/giphy.gif",
-      "https://media.giphy.com/media/3o6vY2wgzLY2K1MKB2/giphy.gif",
-      "https://media.giphy.com/media/11nBTBqgQRpe36/giphy.gif",
-    ];
 
+    const images = document.querySelectorAll('img');
 
-    let i = 0;
-    for (const url of gifs) {
-      const li = document.createElement("li");
-      giflist.appendChild(li);
-
-      const img = document.createElement("img");
+    for (const img of images) {
       img.src = svgSrc();
-      li.appendChild(img);
 
-      img.className = 'init'
-
-      let complete = false;
+      let load = Promise.resolve();
 
       if (params.has('layout')) {
-        gifsize(url).then((res) => {
-          if (!complete) {
-            img.className = 'sized'
+        load = load
+          .then(() => gifsize(img.dataset.src))
+          .then(res => {
             img.src = svgSrc(res.width, res.height)
-          }
-        });
+            img.className = 'sized'
+          })
       }
 
       if (params.has('first')) {
-        gifframe(url).then((res) => {
-          if (!complete) {
-            complete = true;
+        load = load
+          .then(() => gifframe(img.dataset.src))
+          .then(res => {
             img.src = res;
             img.className = 'placehold'
-          }
-        });
+          })
       }
 
       if (params.has('full')) {
-
-        const preload = new Image();
-        preload.src = url;
-        preload.decode()
+        load = load
           .then(() => {
-            complete = true;
-            document.body.appendChild(preload);
+
+            img.className = 'loading'
+
+            const preload = new Image();
+            preload.src = img.dataset.src;
+            return preload.decode().then(() => preload)
+          })
+          .then((preload) => {
+            const li = img.parentElement;
             li.appendChild(preload)
             li.removeChild(img)
           })
 
       }
-
     }
+
+
 
     // return a svg image of given dimensions
     function svgSrc(width = 300, height = 300) {
