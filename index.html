@@ -1,113 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>GifList</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://media.giphy.com" />
-    <meta charset="utf-8" />
-    <style>
-      body {
-        font-family: sans-serif;
-        background: #eee;
-      }
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        padding: 0;
-        gap: 1em;
-        max-width: 50em;
-        margin: auto;
-      }
-      li {
-        height: 8em;
-        flex-grow: 0;
-      }
-      img {
-        border: 1px solid;
-        max-height: 100%;
-        min-width: 100%;
-        object-fit: contain;
-        vertical-align: bottom;
-        background: #fff;
-      }
-    </style>
-  </head>
 
-  <body>
-    <h1>giflist</h1>
-    <ul id="giflist"></ul>
-    <script type="module">
-      const gifs = [
-        "https://media.giphy.com/media/3ornjZLITGcFQVRbxK/source.gif",
-        "https://media.giphy.com/media/3NwahoGmAzVsyyGgaV/source.gif",
-        "https://media.giphy.com/media/vwF2MCJiQk1kKgnS7l/source.gif",
-        "https://media.giphy.com/media/BLxPyPNcfRXIUPxh6Q/source.gif",
-        "https://media.giphy.com/media/fSYmbgG5Ug8S11K0FU/source.gif",
-        "https://media.giphy.com/media/McgWV3RzDQZZNdFWRA/source.gif",
-        "https://media.giphy.com/media/drUQaRAxnTL4Q/giphy.gif",
-        "https://media.giphy.com/media/KPtSLVJfug7DO/giphy.gif",
-        "https://media.giphy.com/media/TFTWZWphtZAsWzJyx9/source.gif",
-        "https://media.giphy.com/media/3o7TKwdgwM1ZQMISu4/source.gif",
-        "https://media.giphy.com/media/l41lMMzTCBvXqtEUU/source.gif",
-        "https://media.giphy.com/media/STLj8QUhg25pe/source.gif",
-        "https://media.giphy.com/media/JkF5aGMSrtG5q/source.gif",
-        "https://media.giphy.com/media/raBbE1fizfZGE/source.gif",
-        "https://media.giphy.com/media/30pNidV6fJHivbPsaR/source.gif",
-        "https://media.giphy.com/media/XdPgs5ROUjIJxVzHx0/giphy.gif",
-        "https://media.giphy.com/media/3otPoKr6JOyejCyJAA/giphy.gif",
-        "https://media.giphy.com/media/3otPoHMzdMgfZznjpe/giphy.gif",
-        "https://media.giphy.com/media/KGeKS2bN3Vy0ALQ1Rf/giphy.gif",
-        "https://media.giphy.com/media/l0ErUoYi9bFdZJ3mo/giphy.gif",
-        "https://media.giphy.com/media/7yQgwmG4jmDOl0QrRa/giphy.gif",
-        "https://media.giphy.com/media/KzzMbCNB0fLtCbwq5h/giphy.gif",
-        "https://media.giphy.com/media/kbv4CXxXR65UivX8qT/giphy.gif",
-        "https://media.giphy.com/media/xUA7bcTVvYq5oZUvSw/giphy.gif",
-        "https://media.giphy.com/media/TvVck7lO4LDJS/giphy-downsized-large.gif",
-        "https://media.giphy.com/media/Y1GK5MEiRa3OSVsxHK/giphy.gif",
-        "https://media.giphy.com/media/tWTgJV6bZQLLi/giphy.gif",
-        "https://media.giphy.com/media/xUPGcDzMVxsPAiV1Ti/giphy.gif",
-        "https://media.giphy.com/media/LV979NzyOBjKBwK9gD/giphy.gif",
-        "https://media.giphy.com/media/xT9IgEk8W4Vu7cixhe/giphy.gif",
-        "https://media.giphy.com/media/iIuowhW7k2diw/giphy.gif",
-        "https://media.giphy.com/media/3o6vY2wgzLY2K1MKB2/giphy.gif",
-        "https://media.giphy.com/media/11nBTBqgQRpe36/giphy.gif",
-      ];
+<head>
+  <!-- 
+        HELLO!
 
-      for (const url of gifs) {
-        const li = document.createElement("li");
-        giflist.appendChild(li);
+        Head over to github for a hack:
+            https://github.com/benfoxall/giflist 
+    -->
+  <meta charset="utf-8" />
+  <title>GifList</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://media.giphy.com" />
+  <meta charset="utf-8" />
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #eee;
+    }
 
-        const img = document.createElement("img");
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 0;
 
-        img.src = `data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='red' /%3E%3C/svg%3E`;
+      max-width: 50em;
+      margin: auto;
+    }
 
-        gifsize(url).then((res) => {
-          img.src = `data:image/svg+xml,%3Csvg width='${res.width}' height='${res.height}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='50' fill='red' /%3E%3C/svg%3E`;
+    li {
+      height: 8em;
+      flex-grow: 0;
+      margin: 0.5em
+    }
 
-          img.addEventListener(
-            "mouseover",
-            () => {
-              img.style.background = "#aaa";
-              img.src = url;
-            },
-            {
-              once: true,
-            }
-          );
+    img {
+      border: 1px solid;
+      max-height: 100%;
+      min-width: 100%;
+      object-fit: contain;
+      vertical-align: bottom;
+      background: #fff;
+    }
+  </style>
+</head>
 
-          li.appendChild(img);
+<body>
+  <h1>giflist</h1>
+  <ul id="giflist"></ul>
+  <script type="module">
+    const gifs = [
+      "https://media.giphy.com/media/3ornjZLITGcFQVRbxK/source.gif",
+      "https://media.giphy.com/media/3NwahoGmAzVsyyGgaV/source.gif",
+      "https://media.giphy.com/media/vwF2MCJiQk1kKgnS7l/source.gif",
+      "https://media.giphy.com/media/BLxPyPNcfRXIUPxh6Q/source.gif",
+      "https://media.giphy.com/media/fSYmbgG5Ug8S11K0FU/source.gif",
+      "https://media.giphy.com/media/McgWV3RzDQZZNdFWRA/source.gif",
+      "https://media.giphy.com/media/drUQaRAxnTL4Q/giphy.gif",
+      "https://media.giphy.com/media/KPtSLVJfug7DO/giphy.gif",
+      "https://media.giphy.com/media/TFTWZWphtZAsWzJyx9/source.gif",
+      "https://media.giphy.com/media/3o7TKwdgwM1ZQMISu4/source.gif",
+      "https://media.giphy.com/media/l41lMMzTCBvXqtEUU/source.gif",
+      "https://media.giphy.com/media/STLj8QUhg25pe/source.gif",
+      "https://media.giphy.com/media/JkF5aGMSrtG5q/source.gif",
+      "https://media.giphy.com/media/raBbE1fizfZGE/source.gif",
+      "https://media.giphy.com/media/30pNidV6fJHivbPsaR/source.gif",
+      "https://media.giphy.com/media/XdPgs5ROUjIJxVzHx0/giphy.gif",
+      "https://media.giphy.com/media/3otPoKr6JOyejCyJAA/giphy.gif",
+      "https://media.giphy.com/media/3otPoHMzdMgfZznjpe/giphy.gif",
+      "https://media.giphy.com/media/KGeKS2bN3Vy0ALQ1Rf/giphy.gif",
+      "https://media.giphy.com/media/l0ErUoYi9bFdZJ3mo/giphy.gif",
+      "https://media.giphy.com/media/7yQgwmG4jmDOl0QrRa/giphy.gif",
+      "https://media.giphy.com/media/KzzMbCNB0fLtCbwq5h/giphy.gif",
+      "https://media.giphy.com/media/kbv4CXxXR65UivX8qT/giphy.gif",
+      "https://media.giphy.com/media/xUA7bcTVvYq5oZUvSw/giphy.gif",
+      "https://media.giphy.com/media/TvVck7lO4LDJS/giphy-downsized-large.gif",
+      "https://media.giphy.com/media/Y1GK5MEiRa3OSVsxHK/giphy.gif",
+      "https://media.giphy.com/media/tWTgJV6bZQLLi/giphy.gif",
+      "https://media.giphy.com/media/xUPGcDzMVxsPAiV1Ti/giphy.gif",
+      "https://media.giphy.com/media/LV979NzyOBjKBwK9gD/giphy.gif",
+      "https://media.giphy.com/media/xT9IgEk8W4Vu7cixhe/giphy.gif",
+      "https://media.giphy.com/media/iIuowhW7k2diw/giphy.gif",
+      "https://media.giphy.com/media/3o6vY2wgzLY2K1MKB2/giphy.gif",
+      "https://media.giphy.com/media/11nBTBqgQRpe36/giphy.gif",
+    ];
+
+
+    let i = 0;
+    for (const url of gifs) {
+      const li = document.createElement("li");
+      giflist.appendChild(li);
+
+      const img = document.createElement("img");
+      img.src = svgSrc();
+
+      li.appendChild(img);
+
+      img.addEventListener(
+        "click",
+        () => {
+          img.style.background = "#aaa";
+          img.src = url;
+        },
+        {
+          once: true,
+        }
+      );
+
+      let complete = false;
+
+      gifsize(url).then((res) => {
+        if (!complete) {
+          img.src = svgSrc(res.width, res.height)
+        }
+      });
+
+      const limit = i++ < 5;
+      if (limit) {
+        gifframe(url).then((res) => {
+          complete = true;
+          img.src = res;
+          // li.appendChild(img);
         });
       }
 
-      async function gifsize(url) {
-        const result = await fetch(url, { headers: { Range: "bytes=6-9" } });
+    }
 
-        const [width, height] = new Uint16Array(await result.arrayBuffer());
+    function svgSrc(width = 300, height = 300) {
+      return `data:image/svg+xml,%3Csvg width='${width}' height='${height}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='15' fill='%23ddd' /%3E%3C/svg%3E`;
+    }
 
-        return { width, height };
-      }
-    </script>
-  </body>
+    // fetch the dimensions of the gif
+    async function gifsize(url) {
+      const result = await fetch(url, { headers: { Range: "bytes=6-9" } });
+
+      const [width, height] = new Uint16Array(await result.arrayBuffer());
+
+      return { width, height };
+    }
+
+    // Fetch the first frame of the gif
+    async function gifframe(url) {
+
+      const worker = new Worker('./omggif-worker.js');
+      worker.postMessage(url)
+      const imageData = await new Promise(resolve => {
+        worker.addEventListener('message', (e) => resolve(e.data))
+      })
+      worker.terminate()
+
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      canvas.width = imageData.width
+      canvas.height = imageData.height
+      ctx.putImageData(imageData, 0, 0);
+
+
+      return canvas.toDataURL();
+    }
+
+
+  </script>
+</body>
+
 </html>
