@@ -1,3 +1,53 @@
+// A Worker wrapper around https://github.com/deanm/omggif
+// See below for licence and source
+
+self.onmessage = (e) => {
+  const url = e.data;
+
+  fetch(url).then((response) => {
+    const reader = response.body.getReader();
+
+    let u8 = new Uint8Array();
+
+    // on every chunk,  try and create a gif with a frame.
+    // otherwise, keep going
+    const pull = () => {
+      reader.read().then(({ done, value }) => {
+        if (done) {
+          return;
+        }
+
+        // append u8
+        const next = new Uint8Array(u8.length + value.length);
+        next.set(u8);
+        next.set(value, u8.length);
+
+        u8 = next;
+
+        try {
+          const gif = new GifReader(u8);
+
+          if (gif && gif.numFrames() > 0) {
+            const imageData = new ImageData(gif.width, gif.height);
+            gif.decodeAndBlitFrameRGBA(0, imageData.data);
+
+            self.postMessage(imageData);
+            reader.cancel();
+            return;
+          }
+        } catch (e) {
+          if (e.message !== "Invalid block size") {
+            console.error(e);
+          }
+        }
+        pull();
+      });
+    };
+
+    pull();
+  });
+};
+
 // (c) Dean McNamee <dean@gmail.com>, 2013.
 //
 // https://github.com/deanm/omggif
@@ -24,9 +74,17 @@
 // including animation and compression.  It does not rely on any specific
 // underlying system, so should run in the browser, Node, or Plask.
 
-"use strict";
+/*
 
-export function GifReader(buf) {
+*** NOTE *** 
+** This has been modified from https://github.com/deanm/omggif
+
+-> Only reads a single frame
+-> Writer removed
+
+*/
+
+function GifReader(buf) {
   var p = 0;
 
   // - Header (GIF87a or GIF89a).
@@ -194,6 +252,11 @@ export function GifReader(buf) {
           delay: delay,
           disposal: disposal,
         });
+
+        // hack:BENJAMINBENBEN
+        // ONLY CAPTURE FIRST FRAME
+        no_eof = false;
+
         break;
 
       case 0x3b: // Trailer Marker (end of file).
