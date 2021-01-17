@@ -42,6 +42,31 @@
       object-fit: contain;
       vertical-align: bottom;
       background: #fff;
+      transition: opacity .1s, transform .3s;
+      opacity: 1;
+    }
+
+    img.init {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+
+    img.sized {
+      transform: scale(0.8);
+    }
+
+    img.placehold {
+      transform: scale(1);
+      cursor: pointer;
+    }
+
+    img.loading {
+      transform: scale(0.8);
+      filter: blur(5px);
+    }
+
+    img.loaded {
+      transform: scale(1);
     }
   </style>
 </head>
@@ -94,41 +119,52 @@
 
       const img = document.createElement("img");
       img.src = svgSrc();
-
       li.appendChild(img);
+
+      img.className = 'init'
+
+      let complete = false;
 
       img.addEventListener(
         "click",
         () => {
-          img.style.background = "#aaa";
+          complete = true;
+          img.className = 'loading'
           img.src = url;
+          img.addEventListener('load', () => {
+            img.className = 'loaded'
+          })
         },
         {
           once: true,
         }
       );
 
-      let complete = false;
+
 
       gifsize(url).then((res) => {
         if (!complete) {
+          img.className = 'sized'
           img.src = svgSrc(res.width, res.height)
         }
       });
 
-      const limit = i++ < 5;
+      const limit = i++ < 50;
       if (limit) {
         gifframe(url).then((res) => {
-          complete = true;
-          img.src = res;
-          // li.appendChild(img);
+          if (!complete) {
+            complete = true;
+            img.src = res;
+            img.className = 'placehold'
+          }
         });
       }
 
     }
 
+    // return a svg image of given dimensions
     function svgSrc(width = 300, height = 300) {
-      return `data:image/svg+xml,%3Csvg width='${width}' height='${height}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='15' fill='%23ddd' /%3E%3C/svg%3E`;
+      return `data:image/svg+xml,%3Csvg width='${width}' height='${height}' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='${width / 2}' cy='${height / 2}' r='15' fill='%23eee' /%3E%3C/svg%3E`;
     }
 
     // fetch the dimensions of the gif
